@@ -1,3 +1,4 @@
+<?php require("./inc/session_start.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>  
@@ -5,8 +6,36 @@
 </head>
 <body>
     <?php 
-        include("./inc/navbar.php");
-        include("./inc/script.php");
+        if(!isset($_GET['vista']) || $_GET['vista']==""){
+            $_GET['vista'] = "login";
+        }
+
+        if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista']!="login" && $_GET['vista']!="404"){
+            
+            #cerrar sesion si no estas loggeado
+            var_dump($_SESSION);
+            var_dump($_SESSION['id']);
+            var_dump($_SESSION['usuario']);
+            if((!isset($_SESSION['id']) or $_SESSION['id']==" ") or (!isset($_SESSION['usuario']) or $_SESSION['usuario']==" ")){
+
+                include "./vistas/logout.php";
+                exit();
+
+            }
+
+            include "./inc/navbar.php";
+            include "./vistas/".$_GET['vista'].".php";
+            var_dump($_SESSION);
+            include "./inc/script.php";
+
+        }else{
+            if($_GET['vista']=="login"){
+                include("./vistas/login.php");  
+           
+            }else{
+                include("./vistas/404.php");
+            }
+        }
     ?>
 </body>
 </html>
