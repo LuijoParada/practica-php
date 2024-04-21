@@ -13,9 +13,7 @@
         if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista']!="login" && $_GET['vista']!="404"){
             
             #cerrar sesion si no estas loggeado
-            var_dump($_SESSION);
-            var_dump($_SESSION['id']);
-            var_dump($_SESSION['usuario']);
+             
             if((!isset($_SESSION['id']) or $_SESSION['id']==" ") or (!isset($_SESSION['usuario']) or $_SESSION['usuario']==" ")){
 
                 include "./vistas/logout.php";
@@ -25,7 +23,7 @@
 
             include "./inc/navbar.php";
             include "./vistas/".$_GET['vista'].".php";
-            var_dump($_SESSION);
+           
             include "./inc/script.php";
 
         }else{

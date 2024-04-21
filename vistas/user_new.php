@@ -4,7 +4,8 @@
 </div>
 <div class="container pb-6 pt-6">
 
-	<div class="form-rest mb-6 mt-6"></div>
+	<div class="form-rest mb-6 mt-6">
+	</div>
 
 	<form action="./php/usuario_guardar.php" method="POST" 
     class="FormularioAjax" autocomplete="off" >
